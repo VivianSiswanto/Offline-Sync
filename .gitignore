@@ -1,0 +1,18 @@
+# .NET
+server/bin/
+server/obj/
+server/items.json
+*.tmp
+
+# Flutter / Dart
+mobile/.dart_tool/
+mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/pubspec.lock
+
+# IDE / OS
+.vscode/
+.idea/
+*.iml
+.DS_Store
