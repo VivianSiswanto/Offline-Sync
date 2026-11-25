@@ -90,12 +90,10 @@ class SqfliteItemLocalStore implements ItemLocalStore {
 
   @override
   Future<int> pendingCount() async {
-    final rows = await _db.query(
-      'sync_meta',
-      where: 'key = ?',
-      whereArgs: [_cursorKey],
+    final result = await _db.rawQuery(
+      'SELECT COUNT(*) FROM items WHERE sync_status = 0',
     );
-    return rows.isEmpty ? 0 : int.parse(rows.first['value'] as String);
+    return Sqflite.firstIntValue(result) ?? 0;
   }
 
   @override

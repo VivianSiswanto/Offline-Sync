@@ -32,6 +32,18 @@ public class SyncService
                         ServerVersion = tx.NextVersion(),
                     });
                 }
+                else if (dto.UpdatedAt < existing!.UpdatedAt)
+                {
+                    tx.Upsert(new Item
+                    {
+                        Id = existing.Id,
+                        Title = existing.Title,
+                        Notes = existing.Notes,
+                        UpdatedAt = existing.UpdatedAt,
+                        IsDeleted = existing.IsDeleted,
+                        ServerVersion = tx.NextVersion(),
+                    });
+                }
                 accepted.Add(dto.Id);
             }
             return 0;

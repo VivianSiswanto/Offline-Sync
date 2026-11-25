@@ -5,7 +5,7 @@ extension ItemMapper on Item {
     'id': id,
     'title': title,
     'notes': notes,
-    'updatedAt': updatedAt,
+    'updatedAt': updatedAt.toUtc().toIso8601String(),
     'isDeleted': isDeleted,
   };
 
@@ -32,7 +32,7 @@ Item itemFromRow(Map<String, Object?> row) => Item(
   id: row['id'] as String,
   title: row['title'] as String,
   notes: row['notes'] as String,
-  updatedAt: DateTime.fromMicrosecondsSinceEpoch(
+  updatedAt: DateTime.fromMillisecondsSinceEpoch(
     row['updated_at'] as int,
     isUtc: true,
   ),
